@@ -37,4 +37,19 @@ const commonFriendsSlow = (usersA, usersB) => {
   const endTime = performance.now();
   return { count: commonFriends.length, timeTookToFinish: endTime - startTime };
 };
-console.log(commonFriendsSlow(usersA, usersB))
+// console.log(commonFriendsSlow(usersA, usersB))
+
+const commonFriendsFast = (usersA, usersB) => {
+  const startTime = performance.now();
+  const commonFriends = [];
+  const idListA = new Set(usersA.map((user) => user.id));
+  usersB.forEach((userB) => {
+    if (idListA.has(userB.id)) {
+      commonFriends.push(userB);
+    }
+  });
+
+  const endTime = performance.now();
+  return { count: commonFriends.length, timeTookToFinish: endTime - startTime };
+};
+console.log(commonFriendsFast(usersA, usersB));
