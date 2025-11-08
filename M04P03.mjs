@@ -29,11 +29,17 @@ const bracketChecker = (str) => {
     if (char === "(" || char === "{" || char === "[") {
       stack.push(char);
     } else if (char === ")" || char === "}" || char === "]") {
-      if (stack.isEmpty() || stack.pop() !== bracketMap[char]) {
+      if (stack.isEmpty()) {
+        return false;
+      }
+      const expected = bracketMap[char];
+      const got = stack.pop();
+      console.log("Expected: ",expected, "Get: ",got)
+      if (got !== expected) {
         return false;
       }
     }
   }
   return stack.isEmpty();
 };
-console.log(bracketChecker("(()[]]"));
+console.log(bracketChecker("(])"));
