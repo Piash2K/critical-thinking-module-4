@@ -14,6 +14,7 @@
 //"Level"=> true
 //"car"=> false
 
+// Using reversed method
 const isPalindrome = (str) => {
   const normalized = str.toLowerCase().replace(/[^a-z0-9]/g, "");
   const reversed = normalized.split("").reverse().join("");
@@ -22,4 +23,20 @@ const isPalindrome = (str) => {
   }
   return false;
 };
-console.log(isPalindrome("car"));
+// console.log(isPalindrome("car"));
+
+// Using two pointer method
+const isPalindromeTwoPointer = (str) => {
+  const normalized = str.toLowerCase().replace(/[^a-z0-9]/g, "");
+  let left = 0;
+  let right = normalized.length - 1;
+  while (left < right) {
+    if (normalized[left] !== normalized[right]) {
+      return false;
+    }
+    left++;
+    right--;
+  }
+  return true;
+};
+console.log(isPalindromeTwoPointer("A man, a plan, a canal: Panama"))
